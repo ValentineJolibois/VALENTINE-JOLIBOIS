@@ -1,0 +1,868 @@
+/* ========== FONTS ========== */
+@font-face {
+  font-family: 'AlteHaasGrotesk';
+  src: url('./AlteHaasGroteskBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AlteHaasGroteskRegular';
+  src: url('./AlteHaasGroteskRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zainer-GoticoAntiqua96G";
+  src: url("./Zainer-GoticoAntiqua96G.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.topbar-brand{
+  font-family: 'AlteHaasGrotesk';
+  font-weight: 700;          /* comme sur ton visuel */
+  font-size: 24px;           /* adapte */
+  line-height: 1;
+  margin: 0;
+}
+
+.word{ display: inline-flex; align-items: baseline; }
+
+.rest{ display: inline; } /* sécurité */
+
+.lettrine{
+  font-family: "Zainer-GoticoAntiqua96G", serif;
+  font-weight: 400;
+  float: left;               /* effet lettrine */
+  line-height: 1;  
+  vertical-align: baseline;
+  line-height: 1;            /* ajuste pour aligner comme sur l’image */
+  font-size: 1.00em;         /* taille de la lettrine vs le reste */
+  margin-right: 0.00em;      /* espace entre lettrine et texte */
+  margin-top: 0.00em;        /* ajuste verticalement */
+  
+  /* Contour noir 1px */
+  -webkit-text-stroke: 2px #000;
+  color: #000;               /* remplissage (mets transparent si tu veux "vide") */
+}
+
+.lettrine-wrapper{
+  font-family: "Zainer-GoticoAntiqua96G", serif;
+  font-weight: 400;
+  float: left;               /* effet lettrine */
+  line-height: 1;  
+  vertical-align: baseline;
+  line-height: 1;            /* ajuste pour aligner comme sur l’image */
+  font-size: 1.00em;         /* taille de la lettrine vs le reste */
+  margin-right: 0.00em;      /* espace entre lettrine et texte */
+  margin-top: 0.00em;        /* ajuste verticalement */
+  transform: translateY(0.08em); /* ajuste +/- */
+  /* Contour noir 1px */
+  -webkit-text-stroke: 3px #000;
+  color: #000;               /* remplissage (mets transparent si tu veux "vide") */
+}
+
+.topbar-menu {
+  display:flex;           /* garantit une baseline mesurable */
+  align-items: baseline;
+  font-family: 'AlteHaasGrotesk';
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  font-weight: 700;          /* comme sur ton visuel */
+  font-size: 24px;           /* adapte */
+  line-height: 1;
+  margin: 0;
+}
+
+/* ========== VARIABLES ========== */
+:root {
+  --menu-size: 40px;
+  --pad-x: 30px;
+  --gap-x: 240px; /* espace entre les slides */
+}
+
+/* ========== RESET ========== */
+* {
+  box-sizing: border-box;
+}
+
+.index-view{
+  min-height: 100vh;
+  background-image: url("IMG/HOME.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: 'AlteHaasGrotesk';
+  font-size: 48px;
+}
+
+/* ========== TOPBAR, BRAND, TITRE ========== */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 30px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px 60px;
+  text-decoration: none;
+  z-index: 300;
+}
+
+.topbar-menu a{
+  color: #000;
+  text-decoration: none;
+  font-family: 'AlteHaasGrotesk';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  position: relative;
+}
+
+.topbar a{
+  color: #000;
+  text-decoration: none;
+}
+
+.topbar-brand{
+  display: inline-flex;
+  gap: 0.2em;
+}
+
+.nav-link{
+  font-weight: 700;
+  transition: color 0.15s ease;
+}
+
+.nav-projects:hover{
+  color: #ff2bd6; /* rose fluo */
+}
+
+.nav-about:hover{
+  color: #2bff5a; /* vert fluo */
+}
+
+
+.nav {
+  text-decoration: none;
+  color: #000;
+}
+
+/* wrapper qui superpose title + menu */
+.topbar-title-wrapper {
+  font-size: 24px;
+  display: inline-grid;
+  min-width: 0;
+  overflow: hidden; /* important pour éviter le clipping bizarre */
+}
+
+.topbar-title {
+  grid-row: 1;
+  grid-column: 1;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 1;
+  line-height: 1;
+  transition: opacity 150ms ease-out;
+}
+
+/* ========== TOPBAR, BRAND, TITRE ========== */
+
+.about {
+  padding: 24px 30px 16px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AlteHaasGroteskRegular';
+}
+
+.about a{
+  color: #000;
+  text-decoration: underline 2px;
+}
+
+
+/* Menu projets superposé au titre */
+.project-menu {
+  line-height: 1;          /* ajuste pour aligner comme sur l’image */
+  grid-row: 1;
+  grid-column: 1;
+
+  display: flex;
+  align-items: baseline;
+  gap: 60px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+
+  font-size: 24px;
+  justify-content: flex-start;
+
+  /* scroll horizontal */
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  /* IMPORTANT pour que le scroll fonctionne dans un layout contraint */
+  min-width: 0;
+  max-width: 100%;
+  flex: 1 1 auto;
+
+  /* permet d’atteindre le dernier item (souvent “coupé”) */
+  padding-right: 2rem;
+  scroll-padding-right: 2rem;
+
+  /* fade à droite (garde ton effet) */
+  -webkit-mask-image: linear-gradient(to right, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, black 92%, transparent 100%);
+}
+
+.project-menu::-webkit-scrollbar{
+  display: none;
+}
+
+/* évite que les items se compressent */
+.project-menu > *{
+  flex: 0 0 auto;
+}
+
+.topbar-title-wrapper:hover .topbar-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.topbar-title-wrapper:hover .project-menu {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-menu-item {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: #000;
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
+.project-menu-item.is-active {
+  opacity: 1;
+}
+
+.topbar-title,
+.project-menu-item{
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.lettrine{
+  display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+.footer-projects{
+  position: relative;
+}
+
+.project-year{
+  position: absolute;
+  right: 30px;
+  bottom: 0px;
+
+  font-family: 'AlteHaasGrotesk';
+  font-size: 24x;
+  font-weight: 700;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+/* ========== OVERLAY BIO ========== */
+
+.about-overlay {
+  font-family: 'Harbour Regular';
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+  z-index: 200; /* sous topbar & footer */
+}
+
+.about-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.about-inner {
+  width: 400px;
+  height: 500px;
+  text-align: center;
+  font-family: 'Harbour Regular';
+  font-size: 20px;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Liens dans l’overlay */
+.about-links {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  font-size: 14px;
+  justify-content: center;
+}
+
+.about-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.about-link:hover {
+  text-decoration: underline;
+}
+
+/* ========== INDEX ABOUT ========== */
+
+/* TABLE (corps) */
+.index-table{
+  font-family: 'AlteHaasGroteskRegular';
+  font-size: 24px;
+  line-height: 1;
+  background-color: var(--white);
+  padding-right: 2rem;
+  padding: 0px 30px 16px;
+
+  /* si tu veux cacher la scrollbar (Firefox/IE) */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Si tu as un scroll interne sur la table, active ça :
+.index-table{ max-height: 80vh; overflow-y: auto; }
+*/
+
+.index-table::-webkit-scrollbar{ display: none; } /* Chrome/Safari */
+
+/* LIGNES DU BODY (= tes <a class="row">) */
+.table-body .row{
+  display: grid;
+  grid-template-columns: 2.5fr 2fr 1.5fr 0.6fr; /* ajuste */
+  gap: 1rem;
+  align-items: baseline;
+
+  /* enlever style lien */
+  color: inherit;
+  text-decoration: none;
+
+  /* un peu de confort */
+  padding: 0.2rem 0;
+}
+
+.table-body .row:hover{
+  background-color: #f2dbff;
+}
+
+/* CELLULES */
+.index-table .cell{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-body .cell:last-child{
+  text-align: right;
+}
+
+/* HEADER (car il est hors .index-table dans ton HTML) */
+.table-head .row{
+  display: grid;
+  grid-template-columns: 2.5fr 2fr 1.5fr 0.6fr; /* ajuste */
+  gap: 1rem;
+  align-items: baseline;
+  margin-bottom: 0.25rem;
+  font-size: 16px;
+  /* Contour noir 1px */
+  -webkit-text-stroke: 1px #000;
+   color: #000; 
+   margin-bottom: 30px;   
+}
+
+.table-head .sorter{
+  /* reset bouton */
+  all: unset;
+  cursor: pointer;
+  display: block; /* pour remplir sa "cellule" */
+  user-select: none;
+}
+
+/* optionnel : état asc/desc visible */
+.table-head .sorter.asc{ opacity: 0.7; }
+.table-head .sorter.desc{ opacity: 1; }
+
+/* Ton contenu global */
+.content{
+  flex-grow: 1;
+  padding: var(--gap) 0;
+}
+
+
+
+/* ========== FOOTER ========== */
+
+.footer{
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  padding: 0 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; /* baseline rend souvent mieux avec des textes */
+  gap: 1rem;
+
+  font-family: 'AlteHaasGrotesk';
+  font-size: 24px;
+
+  z-index: 300;
+  min-width: 0;          /* IMPORTANT en flex */
+}
+
+/* le bloc title/menu doit pouvoir rétrécir */
+.footer .topbar-title-wrapper{
+  min-width: 0;          /* IMPORTANT */
+  flex: 1 1 auto;        /* prend l’espace dispo */
+}
+
+/* si tu as d’autres trucs à droite/gauche, évite qu’ils shrink */
+.footer > *:not(.topbar-title-wrapper){
+  flex: 0 0 auto;
+}
+
+/* menu scrollable: largeur contrainte + padding pour atteindre le dernier item */
+.footer .project-menu{
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-right: 2rem;
+  scroll-padding-right: 2rem;
+}
+
+.footer-link {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+.footer-link:hover {
+  color: #ff4000;
+}
+
+.footer-about {
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  padding: 100px 30px 100px 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'AlteHaasGrotesk';
+  font-size: 24px;
+
+  z-index: 300; /* au-dessus de l’overlay */
+}
+
+footer a{
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+footer a:hover{
+  color: blue;
+}
+/* ========== SCROLL HORIZONTAL ========== */
+
+.track {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+  padding-top: 85px;    /* marge haut */
+  padding-bottom: 85px; /* marge bas */
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: var(--gap-x);
+  background: #fff;
+  z-index: 0;
+}
+
+.figure {
+  position: relative;
+  flex: 0 0 auto;
+  background: #fff;
+  overflow: hidden;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 170px); /* 85 haut + 85 bas */
+}
+
+.figure.full {
+  width: calc(100vw - (var(--pad-x) * 2));
+}
+
+.figure img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  margin: auto;
+  background: #fff;
+}
+
+/* ========== BLOCS TEXTE ENTRE LES IMAGES ========== */
+
+.text-block .text-box {
+  width: 750px;
+  height: 500px;
+  font-family: 'AlteHaasGroteskRegular';
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Quand on survole "valentine jolibois",
+   on masque le project title ET le menu projets */
+   .topbar-brand:hover ~ .topbar-title-wrapper .topbar-title,
+   .topbar-brand:hover ~ .topbar-title-wrapper .project-menu {
+     opacity: 0 !important;
+     pointer-events: none !important;
+   }
+   
+  about-title p {
+    font-size: 24px;
+    padding-left: 30px;
+  }
+  
+  about-texte{
+    font-family: 'AlteHaasGroteskRegular';
+    font-size: 24px;
+    padding-left: 30px;
+    line-height: 1.2;
+    display: block;
+  }
+
+  about-texte a{
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  about-texte p{
+    margin: 0;         /* sinon gros espaces par défaut */
+  }
+
+   .layout{
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr; /* 50% / 50% */
+    width: 100vw;
+  }
+
+  .table-2 .row{
+    display: grid;
+    grid-template-columns: 3fr 2fr 1fr;
+  }
+
+  .table-3 .row{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  /* ========== RESPONSIVE / MOBILE ========== */
+
+/* 1) Rendre les tailles plus fluides (sans casser le desktop) */
+:root{
+  /* valeurs desktop existantes dans ton fichier */
+  /* --pad-x: 30px; --gap-x: 240px; */
+
+  /* Mobile override via media queries ci-dessous */
+}
+
+/* 2) Tablet */
+@media (max-width: 900px){
+  :root{
+    --pad-x: 18px;
+    --gap-x: 120px;
+  }
+
+  body{ font-size: 28px; } /* au lieu de 48 */
+
+  .topbar{
+    padding: 18px var(--pad-x) 10px;
+    gap: 20px;
+  }
+
+  .topbar-menu a,
+  .topbar-brand,
+  .topbar-title,
+  .topbar-title-wrapper,
+  .project-menu,
+  .topbar-title-wrapper
+  .footer{
+    font-size: 24px;
+  }
+
+  /* track: moins de marges verticales */
+  .track{
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+    padding-top: 70px;
+    padding-bottom: 70px;
+    gap: var(--gap-x);
+  }
+
+  .figure{
+    height: calc(100vh - 140px);
+  }
+
+  .text-block .text-box{
+    width: min(750px, 80vw);
+    height: auto;
+    padding: 24px;
+    font-size: 20px;
+  }
+
+  /* About layout : 3 colonnes -> 2 colonnes */
+  .layout{
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .about{
+    padding: 0 var(--pad-x) 16px;
+  }
+
+  .footer-about{
+    font-size: 20px;
+  }
+
+  about-texte{
+    font-size: 18px;
+    padding: 0 var(--pad-x) 16px;
+  }
+
+  about-title p{
+    font-size: 24px;
+    padding-left: var(--pad-x);
+  }
+
+  about-text {
+    font-size: 18px;
+  }
+
+  /* Tables : réduire la densité */
+  .index-table{
+    padding: 0 var(--pad-x) 16px;
+    font-size: 18px;
+  }
+
+  /* 4 colonnes -> proportions plus compactes */
+  .table-body .row,
+  .table-head .row{
+    grid-template-columns: 2fr 1.4fr 1.2fr 0.7fr;
+    gap: 0.75rem;
+  }
+
+  .index-table .cell{
+    white-space: nowrap;
+  }
+}
+
+/* 3) Phone */
+@media (max-width: 600px){
+  :root{
+    --pad-x: 14px;
+    --gap-x: 60px;
+  }
+
+  body{ font-size: 20px; }
+
+  /* Topbar: éviter que ça déborde */
+  .topbar{
+    padding: 14px var(--pad-x) 8px;
+    gap: 14px;
+  }
+
+  .topbar-brand{
+    font-size: 20px;
+    gap: 0.15em;
+  }
+
+  .topbar-menu a{
+    font-size: 20px;
+  }
+
+  /* Footer */
+  .footer{
+    bottom: 14px;
+    padding: 0 var(--pad-x);
+    font-size: 18px;
+  }
+
+  /* Menu projets : gap plus petit pour mobile */
+  .project-menu{
+    font-size: 18px;
+    gap: 18px;
+    padding-right: 1.5rem;
+    scroll-padding-right: 1.5rem;
+  }
+
+  .lettrine{
+    -webkit-text-stroke: 2px #000;
+  }
+
+  /* Track */
+  .track{
+    padding-top: 62px;
+    padding-bottom: 62px;
+    gap: var(--gap-x);
+  }
+
+  .figure{
+    height: calc(100vh - 124px);
+  }
+
+  /* About layout : 1 colonne */
+  .layout{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  about-title p{
+    font-size: 18px;
+    padding-left: var(--pad-x);
+  }
+
+  /* Tables : si ça ne rentre pas, on passe en 2 colonnes */
+  .index-table{
+    font-size: 16px;
+    padding: 0 var(--pad-x) 12px;
+  }
+
+  /* Variante: sur mobile, force des templates cohérents selon table-2 / table-3 */
+  .table-2 .row{ grid-template-columns: 2fr 1.5fr 0.8fr; }
+  .table-3 .row{ grid-template-columns: 3fr 0.9fr; }
+
+  /* Si tu as encore une table 4 colonnes, compresse-la */
+  .table-body .row:not(.table-2 .row):not(.table-3 .row){
+    grid-template-columns: 2fr 1.2fr 0.8fr 0.7fr;
+  }
+
+  /* Optionnel: autoriser le retour à la ligne sur la 1re colonne pour éviter ellipsis partout */
+  .table-body .cell:first-child{
+    white-space: normal;
+  }
+
+  .topbar-menu a,
+  .topbar-brand,
+  .topbar-title,
+  .topbar-title-wrapper,
+  .project-menu,
+  .topbar-title-wrapper
+  .footer{
+    font-size: 20px;
+  }
+}
+
+
+body.animate-out #view{
+  transform: translateX(-60px);
+  transition: transform 320ms cubic-bezier(.4,0,.2,1);
+}
+
+body.animate-in #view{
+  transform: translateX(0);
+  transition: transform 320ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== SPA TRANSITIONS (slide X) ===== */
+
+#view{
+  transform: translateX(0);
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+/* sortie */
+body.animate-out #view{
+  transform: translateX(-60px);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(.4,0,.2,1), opacity 220ms ease;
+}
+
+/* état de départ avant entrée (juste après injection) */
+body.pre-in #view{
+  transform: translateX(60px);
+  opacity: 0;
+}
+
+/* entrée */
+body.animate-in #view{
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 320ms cubic-bezier(.4,0,.2,1), opacity 220ms ease;
+}
