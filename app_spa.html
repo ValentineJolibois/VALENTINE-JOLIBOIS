@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Valentine Jolibois</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <a href="views/index.html" class="topbar-brand" data-route>
+      <span class="word">
+        <span class="lettrine">V</span><span class="rest">alentine</span>
+      </span>
+      <span class="word">
+        <span class="lettrine">J</span><span class="rest">olibois</span>
+      </span>
+    </a>
+
+    <nav class="topbar-menu">
+      <a href="views/projects.html" class="nav-link nav-projects" data-route>Projects</a>
+    </nav>
+
+    <nav class="topbar-menu">
+      <a href="views/about.html" class="nav-link nav-about" data-route>About</a>
+    </nav>
+  </header>
+
+  <!-- VIEW INJECTED HERE -->
+  <div id="view"></div>
+
+  <!-- REAL FOOTER USED AS SLOT -->
+  <footer id="footer-slot" class="footer"></footer>
+
+  <script src="script.js" defer></script>
+  <script src="router_spa.js" defer></script>
+</body>
+</html>
